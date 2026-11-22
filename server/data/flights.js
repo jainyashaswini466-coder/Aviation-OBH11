@@ -1,0 +1,117 @@
+// Fictional flights for classroom practice; prices are in INR.
+const flights = [
+  {
+    "id": "1",
+    "airline": "Skyline Air",
+    "flightNumber": "SA 101",
+    "origin": "Delhi",
+    "destination": "Mumbai",
+    "route": "DEL \u2192 BOM",
+    "departure": "08:00",
+    "arrival": "10:15",
+    "duration": "2h 15m",
+    "price": 5200,
+    "baggage": "15 kg checked + 7 kg cabin",
+    "aircraft": "Airbus A320"
+  },
+  {
+    "id": "2",
+    "airline": "Skyline Air",
+    "flightNumber": "SA 102",
+    "origin": "Hyderabad",
+    "destination": "Bengaluru",
+    "route": "HYD \u2192 BLR",
+    "departure": "09:30",
+    "arrival": "10:40",
+    "duration": "1h 10m",
+    "price": 3100,
+    "baggage": "15 kg checked + 7 kg cabin",
+    "aircraft": "Airbus A320"
+  },
+  {
+    "id": "3",
+    "airline": "Skyline Air",
+    "flightNumber": "SA 103",
+    "origin": "Mumbai",
+    "destination": "Goa",
+    "route": "BOM \u2192 GOI",
+    "departure": "12:00",
+    "arrival": "13:15",
+    "duration": "1h 15m",
+    "price": 3800,
+    "baggage": "15 kg checked + 7 kg cabin",
+    "aircraft": "Airbus A320"
+  },
+  {
+    "id": "4",
+    "airline": "Skyline Air",
+    "flightNumber": "SA 104",
+    "origin": "Bengaluru",
+    "destination": "Delhi",
+    "route": "BLR \u2192 DEL",
+    "departure": "14:00",
+    "arrival": "16:50",
+    "duration": "2h 50m",
+    "price": 6400,
+    "baggage": "15 kg checked + 7 kg cabin",
+    "aircraft": "Airbus A320"
+  },
+  {
+    "id": "5",
+    "airline": "Skyline Air",
+    "flightNumber": "SA 105",
+    "origin": "Chennai",
+    "destination": "Hyderabad",
+    "route": "MAA \u2192 HYD",
+    "departure": "16:30",
+    "arrival": "17:45",
+    "duration": "1h 15m",
+    "price": 2900,
+    "baggage": "15 kg checked + 7 kg cabin",
+    "aircraft": "Airbus A320"
+  },
+  {
+    "id": "6",
+    "airline": "Skyline Air",
+    "flightNumber": "SA 106",
+    "origin": "Kolkata",
+    "destination": "Mumbai",
+    "route": "CCU \u2192 BOM",
+    "departure": "18:00",
+    "arrival": "20:50",
+    "duration": "2h 50m",
+    "price": 6100,
+    "baggage": "15 kg checked + 7 kg cabin",
+    "aircraft": "Airbus A320"
+  },
+  {
+    "id": "7",
+    "airline": "Skyline Air",
+    "flightNumber": "SA 107",
+    "origin": "Delhi",
+    "destination": "Jaipur",
+    "route": "DEL \u2192 JAI",
+    "departure": "19:00",
+    "arrival": "20:00",
+    "duration": "1h",
+    "price": 2400,
+    "baggage": "15 kg checked + 7 kg cabin",
+    "aircraft": "Airbus A320"
+  },
+  {
+    "id": "8",
+    "airline": "Skyline Air",
+    "flightNumber": "SA 108",
+    "origin": "Hyderabad",
+    "destination": "Goa",
+    "route": "HYD \u2192 GOI",
+    "departure": "20:30",
+    "arrival": "21:45",
+    "duration": "1h 15m",
+    "price": 4200,
+    "baggage": "15 kg checked + 7 kg cabin",
+    "aircraft": "Airbus A320"
+  }
+];
+
+export default flights;
