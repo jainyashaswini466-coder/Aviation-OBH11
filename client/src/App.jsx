@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Flights from './pages/Flights';
 import FlightDetails from './pages/FlightDetails';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 export default function App() {
   return <>
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/flights" element={<Flights />} />
         <Route path="/flights/:id" element={<FlightDetails />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element = {<Signup/>} />
         <Route path="*" element={<section className="panel"><h1>Page not found</h1><Link to="/">Return home</Link></section>} />
       </Routes>
     </main>

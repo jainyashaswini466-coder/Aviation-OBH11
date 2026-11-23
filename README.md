@@ -145,4 +145,4 @@ git remote add origin YOUR_REPOSITORY_URL
 git push -u origin main
 ```
 
-Replace `YOUR_REPOSITORY_URL` with your new repository URL. The ZIP excludes dependencies, build output, and private environment files. Commit both lockfiles so students can reproduce installation.
+
