@@ -57,10 +57,12 @@ export default function SignupForm({ onSubmit }) {
 
         method:"POST",
         headers:{
-            'Content-type':'application/json'
+            'Content-type':'application/json',
         },
         body: JSON.stringify(formData)
         })
+
+    // const response = await axios.post('http://localhost:5000/signup',formData )
     //write an api call, for sending the formdata to server
 
   };

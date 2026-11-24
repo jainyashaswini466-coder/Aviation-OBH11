@@ -7,16 +7,31 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault();
     // TODO: Connect this form to the login API during class.
-    setMessage('This is a UI demo. Authentication will be implemented during class.');
+    // setMessage('This is a UI demo. Authentication will be implemented during class.');
   }
   // const signup = true
+  async function handleLogin(){
+    const response = await fetch('http://localhost:5000/login',{
+      method : "POST",
+      headers : {
+        'Content-type':'application/json'
+      },
+      body: JSON.stringify({email, password})
+    })
 
+    const apiresponse = await response.json()
+
+    console.log(apiresponse)
+    
+    setMessage(apiresponse)
+
+  }
   return <section className="login-page panel">
     <span className="eyebrow">WELCOME ABOARD</span><h1>Login</h1><p>Your journey continues here.</p>
     <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email address</label><input id="email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" autoComplete="email" required />
       <label htmlFor="password">Password</label><input id="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Enter your password" autoComplete="current-password" required />
-      <button className="button" type="submit">Login demo</button>
+      <button className="button" onClick={handleLogin} type="submit">Login demo</button>
     </form>
     <p className="muted">UI only — no credentials are sent or stored.</p>
     {message && <p role="status">{message}</p>}
