@@ -27,11 +27,11 @@ app.post('/signup',async (req,res)=>{
 
   let user = Users.find(obj => obj.email == email)
   if(user !== undefined)
-  res.json({message : "Email already registered"})
+  return res.json({message : "Email already registered"})
 
   let hashedPass = await bcrypt.hash(password, 10)
 
-  Users.push({name, email, hashedPass})
+  Users.push({name, email, password:hashedPass})
 
   return res.status(201).json({message : `User with name ${name} is successfully registered`})
   
@@ -43,7 +43,7 @@ app.post('/login',async (req,res)=>{
   const user = Users.find(obj=>obj.email == email)
 
   if(!user){
-    res.status(401).json({
+    return res.status(401).json({
       message:"User is not registered"
     })
   }

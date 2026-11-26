@@ -1,9 +1,11 @@
+
+
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SignupForm({ onSubmit }) {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email:"",
     password:"",
     dateOfBirth: "",
@@ -12,6 +14,7 @@ export default function SignupForm({ onSubmit }) {
   });
 
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,11 +28,8 @@ export default function SignupForm({ onSubmit }) {
     const nextErrors = {};
     const cleanPhone = formData.phoneNumber.replace(/\D/g, "");
 
-    if (!formData.firstName.trim()) {
-      nextErrors.firstName = "First name is required.";
-    }
-    if (!formData.lastName.trim()) {
-      nextErrors.lastName = "Last name is required.";
+    if (!formData.name.trim()) {
+      nextErrors.name = "Name is required.";
     }
     if (!formData.dateOfBirth) {
       nextErrors.dateOfBirth = "Date of birth is required.";
@@ -46,13 +46,15 @@ export default function SignupForm({ onSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const validationErrors = validate();
-    // if (Object.keys(validationErrors).length > 0) {
-    //   setErrors(validationErrors);
-    //   return;
-    // }
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setMessage('');
     onSubmit?.(formData);
 
+    try {
     const response = await fetch('http://localhost:5000/signup',{
 
         method:"POST",
@@ -62,39 +64,34 @@ export default function SignupForm({ onSubmit }) {
         body: JSON.stringify(formData)
         })
 
-    // const response = await axios.post('http://localhost:5000/signup',formData )
-    //write an api call, for sending the formdata to server
+const data = await response.json();
+    setMessage(data.message || (response.ok ? 'Account created. You can now log in.' : 'Unable to create account.'));
+    } catch {
+      setMessage('Unable to reach the server. Please try again.');
+    }
 
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
-      <h2>Sign Up</h2>
+    <section className="login-page panel">
+      <span className="eyebrow">WELCOME ABOARD</span>
+      <h1>Sign up</h1>
+      <p>Create an account to begin your journey.</p>
+      <form onSubmit={handleSubmit}>
 
       <div>
-        <label htmlFor="firstName">First Name</label>
+        <label htmlFor="name">Name</label>
         <input
-          id="firstName"
-          name="firstName"
+          id="name"
+          name="name"
           type="text"
-          value={formData.firstName}
+          value={formData.name}
           onChange={handleChange}
-          placeholder="Jane"
+          placeholder="Jane Doe"
+          autoComplete="name"
+          required
         />
-        {errors.firstName && <p role="alert">{errors.firstName}</p>}
-      </div>
-
-      <div>
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          id="lastName"
-          name="lastName"
-          type="text"
-          value={formData.lastName}
-          onChange={handleChange}
-          placeholder="Doe"
-        />
-        {errors.lastName && <p role="alert">{errors.lastName}</p>}
+        {errors.name && <p role="alert">{errors.name}</p>}
       </div>
 
     <div>
@@ -103,6 +100,8 @@ export default function SignupForm({ onSubmit }) {
           id="email"
           name="email"
           type="email"
+          autoComplete="email"
+          required
           value={formData.email}
           onChange={handleChange}
           placeholder="abc@gmail.com"
@@ -116,6 +115,8 @@ export default function SignupForm({ onSubmit }) {
           id="password"
           name="password"
           type="password"
+          autoComplete="new-password"
+          required
           value={formData.password}
           onChange={handleChange}
           placeholder="***"
@@ -142,6 +143,7 @@ export default function SignupForm({ onSubmit }) {
           <label key={option}>
             <input
               type="radio"
+              style={{ width: 'auto', margin: '0 6px 0 0' }}
               name="gender"
               value={option}
               checked={formData.gender === option}
@@ -166,7 +168,10 @@ export default function SignupForm({ onSubmit }) {
         {errors.phoneNumber && <p role="alert">{errors.phoneNumber}</p>}
       </div>
 
-      <button type="submit">Create Account</button>
-    </form>
+      <button className="button" type="submit">Create Account</button>
+      </form>
+      {message && <p role="status">{message}</p>}
+      <p className="muted">Already have an account? <Link to="/login">Log in</Link></p>
+    </section>
   );
 }
