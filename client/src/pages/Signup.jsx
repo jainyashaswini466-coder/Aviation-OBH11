@@ -1,7 +1,7 @@
 
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignupForm({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -44,6 +44,8 @@ export default function SignupForm({ onSubmit }) {
     return nextErrors;
   };
 
+  const navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -66,7 +68,8 @@ export default function SignupForm({ onSubmit }) {
 
 const data = await response.json();
     setMessage(data.message || (response.ok ? 'Account created. You can now log in.' : 'Unable to create account.'));
-    } catch {
+    navigate('/login')
+  } catch {
       setMessage('Unable to reach the server. Please try again.');
     }
 

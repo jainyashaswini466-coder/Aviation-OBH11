@@ -1,6 +1,4 @@
-<!-- Task 1 : Create a dedicated cluster to store registered users. -->
- <!-- schema model creation -->
 
-//store data on users.js, keep the password encripted using bcrypt library.
-
-//NEXT Class -  session tokens --> UUID --> JWT token in the existing proj
+26Nov - Task
+<!-- make an API request to render profile of logged in user -->
+create a loggin token and store it on server(backend) and localStorage(frontend)

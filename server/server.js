@@ -57,9 +57,14 @@ app.post('/login',async (req,res)=>{
    }
    
    else{
+    const token = crypto.randomUUID()
+
+    user.token = token
+    
     res.status(201).json({
+      user:email,
       message:"User successfully logged in",
-      user: user.email
+      token : token
     })
    }
 

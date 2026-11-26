@@ -10,7 +10,9 @@ export default function Navbar() {
       <div className="nav-links">
         <NavLink to="/" end>Home</NavLink>
         <NavLink to="/flights">Flights</NavLink>
+        <NavLink to="/profile">Profile</NavLink>
         <NavLink to="/login">Login</NavLink>
+
         <button className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} aria-pressed={theme === 'dark'}>{theme === 'light' ? '☾ Dark' : '☀ Light'}</button>
       </div>
     </nav>

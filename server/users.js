@@ -10,5 +10,9 @@ export const Users = [
     gender: "female",
     phoneNumber: "7453642634",
   },
-  
+  {
+    name:"abdul",
+    email:"abdul@gmail.com",
+    password:await bcrypt.hash("abdul",10),
+  }
 ];

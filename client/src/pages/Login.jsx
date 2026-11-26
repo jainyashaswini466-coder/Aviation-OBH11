@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -14,20 +15,27 @@ export default function Login() {
     }
   }
   // const signup = true
+
+  const navigate = useNavigate()
+
   async function handleLogin(){
     const response = await fetch('http://localhost:5000/login',{
       method : "POST",
       headers : {
-        'Content-type':'application/json'
+        'Content-type':'application/json',
       },
       body: JSON.stringify({email, password})
     })
 
     const apiresponse = await response.json()
 
-    console.log(apiresponse)
+    console.log(apiresponse.token)
     
+    navigate('/home')
+
     setMessage(apiresponse.message || "Unable to log in.")
+    localStorage.setItem("user",apiresponse.user)
+    localStorage.setItem("token",apiresponse.token )
 
   }
   return <section className="login-page panel">
